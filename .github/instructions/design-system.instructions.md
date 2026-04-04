@@ -1,7 +1,7 @@
 ---
 name: "Design System"
 description: "Use when modifying UI styling, Tailwind classes, tokens, dark mode, colors, spacing, typography, shadows, z-index, motion, src/index.css, tailwind.config.ts, postcss.config.js, or components.json."
-applyTo: "src/**,tailwind.config.ts,postcss.config.js,components.json"
+applyTo: "client/src/**,client/tailwind.config.ts,client/postcss.config.js,client/components.json"
 ---
 
 

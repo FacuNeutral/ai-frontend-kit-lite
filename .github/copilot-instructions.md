@@ -15,20 +15,29 @@ Estas reglas aplican a cualquier prompt en este workspace.
 - Las reglas detalladas de cada area viven en `.github/instructions/*.instructions.md`; usa la skill y su instruction correspondiente como una sola fuente de criterio.
 - No inventes convenciones paralelas cuando una skill ya define la regla del proyecto.
 
+### Response Format
+
+Usa siempre la instruction `response-format` como formato obligatorio de respuesta para todo el workspace.
+
+- Archivo: `.github/instructions/response-format.instructions.md`.
+- Define tono, avisos de progreso durante trabajo complejo, y el cierre obligatorio con preguntas de validacion y seccion `Tasks`.
+- Aplica a cualquier area, no solo a `client/`.
+
 ### Role
 
-Usa siempre la instruction `role` como criterio base de comportamiento y formato de respuesta para este workspace.
+Usa la instruction `role` como criterio de perspectiva de frontend y diseno solo cuando el trabajo toque archivos dentro de `client/`.
 
 - Archivo: `.github/instructions/role.instructions.md`.
-- Esta instruction define el rol base de frontend y diseno, cuando anunciar complejidad o integraciones externas, y como cerrar cada respuesta con preguntas de validacion y una seccion final `Tasks`.
+- Define la perspectiva de ingenieria frontend, prioridades de UI/UX y criterio para tradeoffs visuales.
+- No aplica fuera de `client/`.
 
 ### Infrastructure
 
-Usa la skill `infrastructure` siempre que el trabajo toque la estructura de `src/**` o decisiones de arquitectura, incluyendo:
+Usa la skill `infrastructure` siempre que el trabajo toque la estructura de `client/src/**` o decisiones de arquitectura, incluyendo:
 
-- `src/App.tsx`, `src/main.tsx`, routes, pages y layouts.
-- `src/application/**`, `src/components/**`, `src/hooks/**`, `src/helpers/**`, `src/lib/**`, `src/data/**`.
-- `src/zustand/**`, contexts, services, naming, ubicacion de archivos y dependencias entre capas.
+- `client/src/App.tsx`, `client/src/main.tsx`, routes, pages y layouts.
+- `client/src/application/**`, `client/src/components/**`, `client/src/hooks/**`, `client/src/helpers/**`, `client/src/lib/**`, `client/src/data/**`.
+- `client/src/zustand/**`, contexts, services, naming, ubicacion de archivos y dependencias entre capas.
 - Cabeceras `//* @type`, `//* @context`, `//* @utility` y comentarios de regiones del DOM.
 
 ### Design System
@@ -36,16 +45,27 @@ Usa la skill `infrastructure` siempre que el trabajo toque la estructura de `src
 Usa la skill `design-system` siempre que el trabajo toque el sistema visual, incluyendo:
 
 - Clases de Tailwind, `className`, estilos, colores, spacing, tipografia, motion, z-index y dark mode.
-- `src/index.css`, `tailwind.config.ts`, `postcss.config.js`, `components.json` y documentacion de tokens.
+- `client/src/index.css`, `client/tailwind.config.ts`, `client/postcss.config.js`, `client/components.json` y documentacion de tokens.
 - Tokens, utilidades generadas por `@theme inline`, configuracion de shadcn y consumo visual de componentes.
 
 ### SEO
 
 Usa la skill `seo` siempre que el trabajo toque SEO o metadata, incluyendo:
 
-- `index.html`, `<head>`, title, description, canonical, robots, Open Graph y Twitter cards.
+- `client/index.html`, `<head>`, title, description, canonical, robots, Open Graph y Twitter cards.
 - Assets publicos de SEO como `og-cover`, `favicon` y `apple-touch-icon`.
 - Metadata por ruta, previews sociales, structured data y documentacion SEO.
+
+### Commits
+
+Usa la skill `commits` siempre que el trabajo toque creacion, revision o asistencia de commits, incluyendo:
+
+- Mensajes de commit, formato convencional, tipos (`feat`, `fix`, `refactor`, etc.).
+- Flujo guiado de commit (`git status` → `git add` → `git commit` → `git push`).
+- Deteccion de tipo y scope a partir de cambios en el workspace.
+- Validacion de formato, multi-type strategy y buenas practicas de historial.
+
+- Archivo: `.github/instructions/commits.instructions.md`.
 
 ## Global Rules
 

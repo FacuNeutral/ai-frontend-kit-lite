@@ -1,7 +1,7 @@
 ---
 name: "Infrastructure"
 description: "Use when modifying src structure, app shell, routing, pages, layouts, feature folders, reusable components, hooks, helpers, Zustand stores, file placement, naming, headers, or DOM region comments."
-applyTo: "src/**"
+applyTo: "client/src/**"
 ---
 
 # Infrastructure

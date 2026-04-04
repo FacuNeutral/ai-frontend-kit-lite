@@ -1,7 +1,7 @@
 ---
 name: "SEO"
 description: "Use when modifying SEO, metadata, index.html head, title, description, canonical URL, robots, Open Graph, Twitter cards, social preview assets, favicons, og-cover images, or route-level metadata."
-applyTo: "index.html,public/**"
+applyTo: "client/index.html,client/public/**"
 ---
 
 # SEO

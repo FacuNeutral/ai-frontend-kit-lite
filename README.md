@@ -1,16 +1,16 @@
-# Design Base
+# Ai Frontend Kit Lite
 
-Design Base es una base frontend orientada a proyectos de escala pequeña y mediana — SaaS, herramientas internas o productos de enfoque privado. El entorno viene preparado para iterar rapido, de forma individual o con asistencia de IA generativa, sobre una arquitectura que no sera necesario descartar cuando el proyecto crezca.
+Ai Frontend Kit Lite es una base frontend orientada a proyectos de escala pequeña y mediana — SaaS, herramientas internas o productos de enfoque privado. El entorno viene preparado para iterar rapido, de forma individual o con asistencia de IA generativa, sobre una arquitectura que no sera necesario descartar cuando el proyecto crezca.
 
 Se puede utilizar en dos escenarios:
 
 ### MVP funcional
 
-Usar Design Base como frontend real del producto. El proyecto se convierte en la aplicacion: se conectan APIs, se reemplazan mocks por datos reales y se escala sobre la arquitectura existente. Ideal para lanzar una primera version usable sin invertir tiempo en definir infraestructura.
+Usar Ai Frontend Kit Lite como frontend real del producto. El proyecto se convierte en la aplicacion: se conectan APIs, se reemplazan mocks por datos reales y se escala sobre la arquitectura existente. Ideal para lanzar una primera version usable sin invertir tiempo en definir infraestructura.
 
 ### Referencia de diseño
 
-Usar Design Base como espacio de exploracion visual. Se prototipon pantallas, se validan flujos y se iteran componentes con datos simulados. El resultado no se despliega como producto final, sino que sirve como referencia de diseño para replicar en un frontend de mayor escala con otra base tecnica. Es un mockup navegable con criterio de sistema visual, no un wireframe estatico.
+Usar Ai Frontend Kit Lite como espacio de exploracion visual. Se prototipon pantallas, se validan flujos y se iteran componentes con datos simulados. El resultado no se despliega como producto final, sino que sirve como referencia de diseño para replicar en un frontend de mayor escala con otra base tecnica. Es un mockup navegable con criterio de sistema visual, no un wireframe estatico.
 
 
 ## Resumen
@@ -53,10 +53,10 @@ Si se necesita una base para experimentar, presentar o construir una primera ver
 | Capa | Tecnologia |
 |---|---|
 | UI | React 19, Tailwind CSS 4, shadcn/ui, Radix UI, Lucide |
-| Arquitectura | TypeScript 6, React Router 7, aliases con `@/` |
-| Estado | Zustand |
-| Formularios | React Hook Form, Zod |
-| Calidad | ESLint, Vitest, Testing Library, Playwright |
+| Engine | TypeScript 6, React Router 7 |
+| States | Zustand, Context |
+| Forms | React Hook Form, Zod |
+| Performance | ESLint, Vitest, Testing Library, Playwright |
 | Tooling | Vite 8, SWC, PostCSS |
 
 ## Arquitectura Base
@@ -166,4 +166,4 @@ Tambien es posible ejecutar los scripts con cualquier gestor de paquetes compati
 
 ## Idea Central
 
-Design Base no es una aplicacion cerrada ni una plantilla atada a una vertical concreta. Es un punto de partida con dos salidas claras: convertirse en el frontend real de un producto pequeño o mediano, o funcionar como un espacio de diseño navegable cuyas decisiones visuales se trasladan a un proyecto de mayor escala. En ambos casos, la base es moderna, reutilizable y lo suficientemente flexible como para avanzar rapido sin sacrificar estructura.
+ai-frontend-kit-lite no es una aplicacion cerrada ni una plantilla atada a una vertical concreta. Es un punto de partida con dos salidas claras: convertirse en el frontend real de un producto pequeño o mediano, o funcionar como un espacio de diseño navegable cuyas decisiones visuales se trasladan a un proyecto de mayor escala. En ambos casos, la base es moderna, reutilizable y lo suficientemente flexible como para avanzar rapido sin sacrificar estructura.
