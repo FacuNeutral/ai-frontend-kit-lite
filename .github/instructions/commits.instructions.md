@@ -14,6 +14,10 @@ Reglas para crear commits claros, atomicos y convencionales. Aplican a cualquier
 - commit description: `english`
 - assistant response: `spanish`
 
+## Configuracion
+
+- auto create issue: `true`
+
 ## Formato obligatorio
 
 ```
@@ -153,6 +157,18 @@ git push origin <branch>
 8. **Confirmar force push** — solo si el usuario eligio `--force` en el paso anterior, preguntar con `asking question`:
    - Opcion 1: confirmar `git push --force` (accion destructiva, sobrescribe historial remoto).
    - Opcion 2: cancelar force push.
+9. **Crear issues automaticas** — solo si `auto create issue: true`. Despues de un push exitoso, preguntar al usuario con `asking question`:
+   - Opcion 1: confirmar creacion automatica de issues.
+   - Opcion 2: omitir creacion de issues para este push.
+   - Opcion 3: respuesta libre del usuario.
+   - Si se confirma:
+     - Crear una issue por cada commit pusheado.
+     - Titulo: `[<TYPE>] <description>` (del commit).
+     - Body: Tasks, Context e Impact del commit.
+     - Labels: `@auto-generated`, `<TYPE>` del commit.
+     - Asignar al usuario que pushea.
+     - Cerrar la issue automaticamente al crearla (ya fue resuelta por el commit).
+     - Si hay multiples commits, crear una issue separada por cada uno.
 
 ## Anti-patrones
 
