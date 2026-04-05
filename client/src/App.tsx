@@ -8,13 +8,14 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import MainLayout from "@/layouts/MainLayout";
-import HomePage from "@/pages/Home";
-import WatchPage from "@/pages/Watch";
-import ShortsPage from "@/pages/Shorts";
-import SearchPage from "@/pages/Search";
-import LoginPage from "@/pages/Login";
-import RegisterPage from "@/pages/Register";
-import NotFound from "@/pages/NotFound";
+import HomePage from "@/pages/HomePage";
+import WatchPage from "@/pages/WatchPage";
+import ShortsPage from "@/pages/ShortsPage";
+import SearchPage from "@/pages/SearchPage";
+import LoginPage from "@/pages/LoginPage";
+import RegisterPage from "@/pages/RegisterPage";
+import NotFoundPage from "@/pages/NotFoundPage";
+import PagesExplorerIntegration from "@/integrations/pages-explorer/PagesExplorerIntegration";
 
 const queryClient = new QueryClient();
 
@@ -24,17 +25,19 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/shorts" element={<ShortsPage />} />
-            <Route path="/watch/:id" element={<WatchPage />} />
-            <Route path="/search" element={<SearchPage />} />
-          </Route>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <PagesExplorerIntegration>
+          <Routes>
+            <Route element={<MainLayout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/shorts" element={<ShortsPage />} />
+              <Route path="/watch/:id" element={<WatchPage />} />
+              <Route path="/search" element={<SearchPage />} />
+            </Route>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </PagesExplorerIntegration>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

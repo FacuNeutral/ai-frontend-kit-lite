@@ -1,0 +1,24 @@
+{
+  "id": "register",
+  "title": "Register",
+  "route": "/register",
+  "layout": "standalone",
+  "description": "Página standalone de registro. Formulario multi-step (form → loading → success) con redirección automática tras éxito.",
+  "params": [],
+  "queryParams": [],
+  "sections": [
+    {
+      "name": "Register Form",
+      "component": "RegisterForm",
+      "path": "@/application/auth/components/RegisterForm",
+      "description": "Card centrada (max-w-sm) con tres pasos: formulario (nombre, email, password via FormField), estado de carga, y pantalla de éxito con auto-redirect a / tras 1.5s."
+    }
+  ],
+  "stores": ["useAuthStore"],
+  "processes": [
+    "Gestiona estado local multi-step (form, loading, success).",
+    "Dispara register() del authStore al enviar.",
+    "Transiciona de loading a success automáticamente.",
+    "Auto-redirect a / tras 1.5 segundos en estado success."
+  ]
+}

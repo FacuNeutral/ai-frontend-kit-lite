@@ -143,6 +143,51 @@
    --animate-accordion-down: accordion-down 0.2s ease-out;
    --animate-accordion-up: accordion-up 0.2s ease-out;
    --animate-shimmer: shimmer 1.5s ease-in-out infinite;
+
+   /* ==========================================
+     Debug Tools — Design Tokens
+     ========================================== */
+
+   /* --- Debug Surfaces --- */
+   --color-debug-surface: #FAFAFA;
+   --color-debug-surface-dark: #111111;
+   --color-debug-surface-raised: #FFFFFF;
+   --color-debug-surface-raised-dark: #1A1A1A;
+   --color-debug-surface-overlay: #F0F0F0;
+   --color-debug-surface-overlay-dark: #0D0D0D;
+
+   /* --- Debug Borders --- */
+   --color-debug-border: #E0E0E0;
+   --color-debug-border-dark: #2A2A2A;
+   --color-debug-border-active: #B0B0B0;
+   --color-debug-border-active-dark: #444444;
+
+   /* --- Debug Text --- */
+   --color-debug-text: #1A1A1A;
+   --color-debug-text-dark: #E8E8E8;
+   --color-debug-text-muted: #6B7280;
+   --color-debug-text-muted-dark: #9CA3AF;
+
+   /* --- Debug Accent --- */
+   --color-debug-accent: #6366F1;
+   --color-debug-accent-hover: #4F46E5;
+   --color-debug-accent-foreground: #FFFFFF;
+
+   /* --- Debug Viewport Indicators --- */
+   --color-debug-viewport-mobile: #F59E0B;
+   --color-debug-viewport-tablet: #8B5CF6;
+   --color-debug-viewport-desktop: #10B981;
+
+   /* --- Debug Z-Index --- */
+   --z-debug: 9000;
+   --z-debug-overlay: 9100;
+   --z-debug-panel: 9200;
+   --z-debug-trigger: 9300;
+
+   /* --- Debug Radius --- */
+   --radius-debug-panel: 0.75rem;
+   --radius-debug-button: 0.5rem;
+   --radius-debug-tab: 0.375rem;
 }
 
 /* ==========================================
@@ -176,6 +221,19 @@
    100% {
       background-position: 200% 0;
    }
+}
+
+@keyframes debug-brand {
+   0%, 100% {
+      color: var(--color-debug-accent);
+   }
+   50% {
+      color: var(--color-debug-accent-hover);
+   }
+}
+
+.animate-debug-brand {
+   animation: debug-brand 3s ease-in-out infinite;
 }
 
 /* ==========================================

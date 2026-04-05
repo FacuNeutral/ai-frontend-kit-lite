@@ -1,0 +1,29 @@
+{
+  "id": "shorts",
+  "title": "Shorts",
+  "route": "/shorts",
+  "layout": "MainLayout",
+  "description": "Feed vertical de videos cortos con scroll snap. Soporta navegación por teclado (flechas, j/k).",
+  "params": [],
+  "queryParams": [],
+  "sections": [
+    {
+      "name": "Shorts Feed",
+      "component": "ShortsFeed",
+      "path": "@/application/shorts/components/ShortsFeed",
+      "description": "Contenedor vertical con snap-y snap-mandatory. Gestiona navegación por teclado y auto-scroll al short activo."
+    },
+    {
+      "name": "Short Card",
+      "component": "ShortCard",
+      "path": "@/application/shorts/components/ShortCard",
+      "description": "Card portrait (9:16) con thumbnail lazy-loaded, acciones verticales (like, comentar, compartir) y metadata del canal."
+    }
+  ],
+  "stores": ["useShortsStore"],
+  "processes": [
+    "Lee la lista de shorts y el índice activo desde useShortsStore.",
+    "Escucha eventos de teclado (ArrowUp/ArrowDown, k/j) para navegar entre shorts.",
+    "Auto-scroll suave al short activo cuando cambia el índice."
+  ]
+}

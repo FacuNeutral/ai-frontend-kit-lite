@@ -1,0 +1,24 @@
+{
+  "id": "login",
+  "title": "Login",
+  "route": "/login",
+  "layout": "standalone",
+  "description": "Página standalone de inicio de sesión. Formulario centrado con branding VidTube, campos de email/password y redirección al home tras login exitoso.",
+  "params": [],
+  "queryParams": [],
+  "sections": [
+    {
+      "name": "Login Form",
+      "component": "LoginForm",
+      "path": "@/application/auth/components/LoginForm",
+      "description": "Card centrada (max-w-sm) con logo, campos email y password (via FormField), botón submit con spinner de carga y enlace a registro."
+    }
+  ],
+  "stores": ["useAuthStore"],
+  "processes": [
+    "Gestiona estado local de formulario (email, password).",
+    "Dispara login() del authStore al enviar.",
+    "Muestra spinner durante isLoading.",
+    "Redirige a / vía useNavigate tras login exitoso."
+  ]
+}

@@ -41,7 +41,7 @@ Reglas para crear commits claros, atomicos y convencionales. Aplican a cualquier
 | `fix`      | correccion de bug     |
 | `refactor` | mejora interna        |
 | `perf`     | mejora de performance |
-| `docs`     | documentacion         |
+| `docs`     | documentacion, cambios en archivos .md o ./copilot/** |
 | `style`    | formato / estilos     |
 | `test`     | testing               |
 | `chore`    | tareas internas       |
