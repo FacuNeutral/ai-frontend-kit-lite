@@ -18,6 +18,36 @@ Reglas para crear commits claros, atomicos y convencionales. Aplican a cualquier
 
 - auto create issue: `true`
 
+## Versionado (semver)
+
+### Reglas generales
+
+- La version vive en `client/package.json` → campo `version`.
+- **Nunca** se sube una nueva version principal (major). El proyecto se mantiene en `1.x.x`.
+- Cada commit debe calcular el bump de version segun el tipo de mayor impacto:
+
+| Tipo de mayor impacto          | Bump   |
+| ------------------------------ | ------ |
+| `fix`, `refactor`, `perf`, `docs`, `style`, `test`, `chore` | patch  |
+| `feat`                         | minor  |
+
+- Si un commit tiene multiples tipos, se usa el bump del tipo de mayor prioridad.
+- Breaking changes se tratan como minor (nunca major).
+
+### Sufijo `-alpha`
+
+- Si `client/src/application/` **tiene contenido** (carpetas o archivos) → la version lleva sufijo `-alpha` (ej. `1.2.0-alpha`).
+- Si `client/src/application/` **esta vacio o no existe** → la version **no lleva** sufijo alpha (ej. `1.2.0`).
+- Verificar el estado de `client/src/application/` antes de cada commit para determinar el sufijo.
+
+### Flujo de version en commit
+
+1. Leer version actual de `client/package.json`.
+2. Determinar bump (patch o minor) segun el tipo del commit.
+3. Verificar si `client/src/application/` tiene contenido → aplicar o quitar `-alpha`.
+4. Actualizar `client/package.json` con la nueva version.
+5. Incluir el cambio de version en el mismo commit.
+
 ## Formato obligatorio
 
 ```
@@ -136,39 +166,46 @@ git push origin <branch>
 ## Flujo asistido (LLM / Copilot)
 
 1. **Detectar cambios** — listar archivos modificados, identificar tipo y scope.
-2. **Validar estructura** — si hay multiples tipos, preguntar al usuario con `asking question`:
+2. **Calcular version** — seguir el flujo de version en commit (leer version actual, calcular bump, verificar alpha, actualizar `client/package.json`).
+3. **Validar estructura** — si hay multiples tipos, preguntar al usuario con `asking question`:
    - Opcion 1: commit combinado (multi-type, mas simple).
    - Opcion 2: commits separados (staging parcial, historial mas limpio).
    - Opcion 3: respuesta libre del usuario.
-3. **Generar commit** — proponer mensaje con formato obligatorio.
-4. **Confirmar commit** — preguntar al usuario con `asking question`:
+4. **Generar commit** — proponer mensaje con formato obligatorio.
+5. **Confirmar commit** — preguntar al usuario con `asking question`:
    - Opcion 1: confirmar y ejecutar el commit propuesto.
    - Opcion 2: denegar y regenerar con ajustes.
    - Opcion 3: editar manualmente (el usuario escribe su propio mensaje).
-5. **Siguiente paso** — sugerir `git add`, `git commit`, luego `git push`.
-6. **Confirmar push** — preguntar al usuario con `asking question`:
+6. **Siguiente paso** — sugerir `git add`, `git commit`, luego `git push`.
+7. **Confirmar push** — preguntar al usuario con `asking question`:
    - Opcion 1: confirmar y ejecutar `git push origin <branch>`.
    - Opcion 2: cancelar push (solo commit local).
    - Opcion 3: respuesta libre del usuario.
-7. **Conflictos en push** — si el push falla por conflictos, preguntar al usuario con `asking question`:
+8. **Conflictos en push** — si el push falla por conflictos, preguntar al usuario con `asking question`:
    - Opcion 1: cancelar y resolver conflictos manualmente.
    - Opcion 2: forzar push con `--force`.
    - Opcion 3: respuesta libre del usuario.
-8. **Confirmar force push** — solo si el usuario eligio `--force` en el paso anterior, preguntar con `asking question`:
+9. **Confirmar force push** — solo si el usuario eligio `--force` en el paso anterior, preguntar con `asking question`:
    - Opcion 1: confirmar `git push --force` (accion destructiva, sobrescribe historial remoto).
    - Opcion 2: cancelar force push.
-9. **Crear issues automaticas** — solo si `auto create issue: true`. Despues de un push exitoso, preguntar al usuario con `asking question`:
+10. **Crear issues automaticas** — solo si `auto create issue: true`. Despues de un push exitoso, preguntar al usuario con `asking question`:
    - Opcion 1: confirmar creacion automatica de issues.
    - Opcion 2: omitir creacion de issues para este push.
    - Opcion 3: respuesta libre del usuario.
    - Si se confirma:
-     - Crear una issue por cada commit pusheado.
-     - Titulo: `[<TYPE>] <description>` (del commit).
-     - Body: Tasks, Context e Impact del commit.
-     - Labels: `@auto-generated`, `<TYPE>` del commit.
+     - Si el commit tiene **un solo grupo de tasks** (un solo tipo):
+       - Crear una issue para el commit.
+       - Titulo: `[<TYPE>] <description>` (del commit).
+       - Body: Tasks, Context e Impact del commit.
+       - Labels: `@auto-generated`, `<TYPE>` del commit.
+     - Si el commit tiene **multiples grupos de tasks** (multi-type, ej. fix + feat):
+       - Crear una issue **separada por cada grupo de tipo**.
+       - Titulo de cada issue: `[<TYPE>] <description>` donde `<TYPE>` es el tipo del grupo (ej. `[fix]`, `[feat]`).
+       - Body de cada issue: solo las tasks del grupo correspondiente, mas Context e Impact del commit.
+       - Labels de cada issue: `@auto-generated`, `<TYPE>` del grupo (ej. `fix`, `feat`).
      - Asignar al usuario que pushea.
-     - Cerrar la issue automaticamente al crearla (ya fue resuelta por el commit).
-     - Si hay multiples commits, crear una issue separada por cada uno.
+     - Cerrar cada issue automaticamente al crearla (ya fue resuelta por el commit).
+     - Si hay multiples commits, aplicar las mismas reglas a cada uno.
 
 ## Anti-patrones
 

@@ -15,7 +15,7 @@ import SearchPage from "@/pages/SearchPage";
 import LoginPage from "@/pages/LoginPage";
 import RegisterPage from "@/pages/RegisterPage";
 import NotFoundPage from "@/pages/NotFoundPage";
-import PagesExplorerIntegration from "@/integrations/pages-explorer/PagesExplorerIntegration";
+import PagesExplorerIntegration from "@/devtools/pages-explorer/layouts/PagesExplorerIntegration";
 
 const queryClient = new QueryClient();
 

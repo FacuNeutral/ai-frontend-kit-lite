@@ -8,7 +8,7 @@ import type { Plugin } from "vite";
 
 const SCREENSHOTS_DIR = path.resolve(
   __dirname,
-  "src/integrations/pages-explorer/screenshots"
+  "src/devtools/pages-explorer/screenshots"
 );
 
 function sanitizeName(route: string): string {

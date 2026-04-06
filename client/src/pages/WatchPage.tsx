@@ -4,11 +4,13 @@
 
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { motion } from "motion/react"
 import { useVideosStore } from "@/zustand/videos/videos.slice";
 import VideoPlayer from "@/application/videos/components/VideoPlayer";
 import VideoActions from "@/application/videos/components/VideoActions";
 import VideoDescription from "@/application/videos/components/VideoDescription";
 import RelatedVideos from "@/application/videos/components/RelatedVideos";
+import { fadeUp, smooth } from "@/styles/animations"
 
 export default function WatchPage() {
   const { id } = useParams<{ id: string }>();
@@ -29,7 +31,14 @@ export default function WatchPage() {
   }
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 pb-8">
+    <motion.div
+      className="flex flex-col lg:flex-row gap-6 pb-8"
+      variants={fadeUp}
+      initial="hidden"
+      animate="visible"
+      transition={smooth}
+      key={video.id}
+    >
       {/* <Tag> Main — reproductor y detalles */}
       <div className="flex-1 min-w-0">
         {/* <Tag> Media */}
@@ -52,6 +61,6 @@ export default function WatchPage() {
       </div>
       {/* <Tag> Related Videos */}
       <RelatedVideos videos={related} />
-    </div>
+    </motion.div>
   );
 }

@@ -4,8 +4,10 @@
 
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { motion } from "motion/react"
 import { useAuthStore } from "@/zustand/auth/auth.slice";
 import { Loader2 } from "lucide-react";
+import { spin, scaleIn, spring } from "@/styles/animations"
 import FormField from "@/components/fragments/FormField";
 
 export default function LoginForm() {
@@ -22,7 +24,13 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="w-full max-w-sm bg-neutral dark:bg-neutral-dark border border-neutral dark:border-neutral-surface-dark rounded-xl p-8 space-y-6">
+    <motion.div
+      className="w-full max-w-sm bg-neutral dark:bg-neutral-dark border border-neutral dark:border-neutral-surface-dark rounded-xl p-8 space-y-6"
+      variants={scaleIn}
+      initial="hidden"
+      animate="visible"
+      transition={spring}
+    >
       {/* <Tag> Header — branding y título */}
       <div className="text-center space-y-2">
         <div className="mx-auto w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
@@ -45,7 +53,9 @@ export default function LoginForm() {
         >
           {isLoading ? (
             <>
-              <Loader2 className="w-4 h-4 animate-spin" />
+              <motion.span variants={spin} initial="initial" animate="animate">
+                <Loader2 className="w-4 h-4" />
+              </motion.span>
               Iniciando sesión...
             </>
           ) : (
@@ -61,6 +71,6 @@ export default function LoginForm() {
           Regístrate
         </Link>
       </p>
-    </div>
+    </motion.div>
   );
 }

@@ -4,8 +4,10 @@
 
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "motion/react"
 import { useAuthStore } from "@/zustand/auth/auth.slice";
 import { Loader2, CheckCircle } from "lucide-react";
+import { spin, scaleIn, popIn, spring } from "@/styles/animations"
 import FormField from "@/components/fragments/FormField";
 
 export default function RegisterForm() {
@@ -27,18 +29,32 @@ export default function RegisterForm() {
 
   if (step === "success") {
     return (
-      <div className="w-full max-w-sm bg-neutral dark:bg-neutral-dark border border-neutral dark:border-neutral-surface-dark rounded-xl p-8 space-y-6">
+      <motion.div
+        className="w-full max-w-sm bg-neutral dark:bg-neutral-dark border border-neutral dark:border-neutral-surface-dark rounded-xl p-8 space-y-6"
+        variants={popIn}
+        initial="hidden"
+        animate="visible"
+        transition={spring}
+      >
         <div className="text-center space-y-4 py-8">
-          <CheckCircle className="w-16 h-16 text-success mx-auto" />
+          <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={spring}>
+            <CheckCircle className="w-16 h-16 text-success mx-auto" />
+          </motion.div>
           <h2 className="text-xl font-semibold text-neutral-dark dark:text-neutral">¡Cuenta creada!</h2>
           <p className="text-sm text-neutral-off-dark dark:text-neutral-off">Redirigiendo al inicio...</p>
         </div>
-      </div>
+      </motion.div>
     );
   }
 
   return (
-    <div className="w-full max-w-sm bg-neutral dark:bg-neutral-dark border border-neutral dark:border-neutral-surface-dark rounded-xl p-8 space-y-6">
+    <motion.div
+      className="w-full max-w-sm bg-neutral dark:bg-neutral-dark border border-neutral dark:border-neutral-surface-dark rounded-xl p-8 space-y-6"
+      variants={scaleIn}
+      initial="hidden"
+      animate="visible"
+      transition={spring}
+    >
       {/* <Tag> Header — branding y título */}
       <div className="text-center space-y-2">
         <div className="mx-auto w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
@@ -68,7 +84,9 @@ export default function RegisterForm() {
         >
           {step === "loading" ? (
             <>
-              <Loader2 className="w-4 h-4 animate-spin" />
+              <motion.span variants={spin} initial="initial" animate="animate">
+                <Loader2 className="w-4 h-4" />
+              </motion.span>
               Creando cuenta...
             </>
           ) : (
@@ -84,6 +102,6 @@ export default function RegisterForm() {
           Inicia sesión
         </Link>
       </p>
-    </div>
+    </motion.div>
   );
 }

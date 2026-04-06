@@ -3,9 +3,11 @@
 //* @utility Shell principal con Header, Sidebar y región de contenido dinámico.
 
 import { Outlet } from "react-router-dom";
+import { motion } from "motion/react"
 import Header from "@/components/core/Header";
 import Sidebar from "@/components/core/Sidebar";
 import { useUiStore } from "@/zustand/ui/ui.slice";
+import { smooth } from "@/styles/animations"
 
 export default function MainLayout() {
   const sidebarCollapsed = useUiStore((s) => s.sidebarCollapsed);
@@ -17,13 +19,13 @@ export default function MainLayout() {
       {/* <Tag> Nav */}
       <Sidebar />
       {/* <Tag> Main — contenido de ruta */}
-      <main
-        className={`pt-14 transition-all duration-200 ${
-          sidebarCollapsed ? "ml-[72px]" : "ml-56"
-        } px-4 lg:px-6`}
+      <motion.main
+        animate={{ marginLeft: sidebarCollapsed ? 72 : 224 }}
+        transition={smooth}
+        className="pt-14 px-4 lg:px-6"
       >
         <Outlet />
-      </main>
+      </motion.main>
     </div>
   );
 }

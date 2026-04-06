@@ -3,7 +3,9 @@
 //* @utility Card individual de un short con thumbnail portrait, overlay de acciones y metadata.
 
 import { Heart, MessageCircle, Share2 } from "lucide-react";
+import { motion } from "motion/react"
 import type { Short } from "@/entities/short.entity";
+import { fadeUp, spring } from "@/styles/animations"
 
 interface ShortCardProps {
   short: Short;
@@ -12,10 +14,14 @@ interface ShortCardProps {
 
 export default function ShortCard({ short, active }: ShortCardProps) {
   return (
-    <div
+    <motion.div
       className={`relative w-full max-w-90 mx-auto aspect-9/16 rounded-xl overflow-hidden bg-neutral-dark snap-center shrink-0 ${
         active ? "ring-2 ring-primary" : ""
       }`}
+      variants={fadeUp}
+      initial="hidden"
+      animate="visible"
+      transition={spring}
     >
       {/* <Tag> Media — thumbnail portrait */}
       <img
@@ -58,6 +64,6 @@ export default function ShortCard({ short, active }: ShortCardProps) {
         </div>
         <p className="text-sm text-neutral line-clamp-2">{short.title}</p>
       </div>
-    </div>
+    </motion.div>
   );
 }

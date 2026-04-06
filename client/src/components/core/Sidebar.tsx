@@ -29,7 +29,7 @@ export default function Sidebar() {
 
   if (collapsed) {
     return (
-      <aside className="fixed top-14 left-0 w-[72px] h-[calc(100vh-56px)] bg-neutral dark:bg-neutral-dark z-40 flex flex-col items-center pt-2 gap-1 overflow-y-auto scrollbar-hide">
+      <aside className="fixed top-14 left-0 w-18 h-[calc(100vh-56px)] bg-neutral dark:bg-neutral-dark z-40 flex flex-col items-center pt-2 gap-1 overflow-y-auto scrollbar-hide">
         {/* <Tag> Nav — enlaces principales */}
         {mainLinks.map(({ icon: Icon, label, path }) => (
           <Link
