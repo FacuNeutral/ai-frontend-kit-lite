@@ -20,19 +20,59 @@ Reglas para crear commits claros, atomicos y convencionales. Aplican a cualquier
 
 ## Versionado (semver)
 
+### Formato
+
+`MAJOR.MINOR.PATCH` (z.y.x)
+
 ### Reglas generales
 
 - La version vive en `client/package.json` → campo `version`.
-- **Nunca** se sube una nueva version principal (major). El proyecto se mantiene en `1.x.x`.
-- Cada commit debe calcular el bump de version segun el tipo de mayor impacto:
+- **MAJOR (z) NO se modifica automaticamente bajo ninguna circunstancia.**
+- Si se detecta un `BREAKING CHANGE` o `!`:
+  - ❌ NO modificar MAJOR.
+  - ✅ Reportar: `"breaking change detectado"`.
+  - ✅ Continuar evaluacion como si fuera MINOR.
 
-| Tipo de mayor impacto          | Bump   |
-| ------------------------------ | ------ |
-| `fix`, `refactor`, `perf`, `docs`, `style`, `test`, `chore` | patch  |
-| `feat`                         | minor  |
+### Tipos y su impacto en version
 
-- Si un commit tiene multiples tipos, se usa el bump del tipo de mayor prioridad.
-- Breaking changes se tratan como minor (nunca major).
+#### Incrementan version
+
+| Tipo     | Bump    |
+| -------- | ------- |
+| `feat`   | MINOR   |
+| `fix`    | PATCH   |
+| `style`  | PATCH   |
+
+#### Pueden afectar PATCH (solo si impactan comportamiento)
+
+| Tipo       | Condicion                                      |
+| ---------- | ---------------------------------------------- |
+| `perf`     | PATCH si hay mejora observable                 |
+| `refactor` | PATCH solo si afecta comportamiento externo; si no → ignorar |
+
+#### NO afectan version
+
+| Tipo     | Accion   |
+| -------- | -------- |
+| `docs`   | ignorar  |
+| `test`   | ignorar  |
+| `chore`  | ignorar  |
+| `agent`  | ignorar  |
+| `revert` | evaluar segun el commit revertido |
+
+### Seleccion del incremento
+
+- Elegir **el mayor impacto presente**: `feat > fix > otros`.
+- Ejemplo: `feat + fix` → MINOR. Multiples `fix` → PATCH.
+- **Nunca acumular incrementos**:
+  - ❌ 2 feat → NO es +2 MINOR.
+  - ❌ 5 fix → NO es +5 PATCH.
+- Evaluar el **impacto real**, no la cantidad de commits. Agrupar como una sola release.
+
+### Reset de version
+
+- Si sube MINOR → PATCH se resetea a 0 (ej. `1.2.3` → `1.3.0`).
+- MAJOR nunca cambia automaticamente.
 
 ### Sufijo `-alpha`
 
@@ -43,10 +83,26 @@ Reglas para crear commits claros, atomicos y convencionales. Aplican a cualquier
 ### Flujo de version en commit
 
 1. Leer version actual de `client/package.json`.
-2. Determinar bump (patch o minor) segun el tipo del commit.
-3. Verificar si `client/src/application/` tiene contenido → aplicar o quitar `-alpha`.
-4. Actualizar `client/package.json` con la nueva version.
-5. Incluir el cambio de version en el mismo commit.
+2. Determinar bump (MINOR o PATCH) segun el tipo de mayor impacto del commit.
+3. Si hay breaking change → reportar flag, tratar como MINOR.
+4. Aplicar reset: si MINOR sube, PATCH → 0.
+5. Verificar si `client/src/application/` tiene contenido → aplicar o quitar `-alpha`.
+6. Actualizar `client/package.json` con la nueva version.
+7. Incluir el cambio de version en el mismo commit.
+
+### Salida obligatoria del calculo de version
+
+1. Incremento: `MINOR` o `PATCH`.
+2. Nueva version (respetando MAJOR actual).
+3. Flags: `"breaking change detectado"` (si aplica).
+4. Justificacion breve.
+
+### Prohibiciones
+
+- ❌ No modificar MAJOR automaticamente.
+- ❌ No acumular versiones por cantidad de commits.
+- ❌ No considerar `docs`, `test`, `chore`, `agent` como cambios versionables.
+- ❌ No generar versiones inconsistentes (ej: `1.2.3` → `1.3.4`).
 
 ## Formato obligatorio
 
@@ -75,6 +131,7 @@ Reglas para crear commits claros, atomicos y convencionales. Aplican a cualquier
 | `style`    | formato / estilos     |
 | `test`     | testing               |
 | `chore`    | tareas internas       |
+| `agent`    | actualizaciones o nuevas caracteristicas del entorno del agente: skills, instructions, tools, hooks, prompts, y cualquier documentacion especifica para controlar el comportamiento del LLM |
 
 ## Reglas de descripcion
 
@@ -86,7 +143,7 @@ Reglas para crear commits claros, atomicos y convencionales. Aplican a cualquier
 ## Prioridad de tipos
 
 ```
-fix > feat > refactor > perf > docs > style > chore
+fix > feat > refactor > perf > docs > style > chore > agent
 ```
 
 El tipo principal es el de mayor impacto.
@@ -204,6 +261,12 @@ git push origin <branch>
        - Body de cada issue: solo las tasks del grupo correspondiente, mas Context e Impact del commit.
        - Labels de cada issue: `@auto-generated`, `<TYPE>` del grupo (ej. `fix`, `feat`).
      - Asignar al usuario que pushea.
+     - Agregar un comentario en cada issue con la referencia al commit que la resolvio. El comentario debe estar en **ingles** y seguir este formato exacto:
+       ```
+       resolved on commit <short-sha> (<commit description>)
+       ```
+       Ejemplo: `resolved on commit df0178b (improve devtools UI visual polish)`
+     - Este comentario es obligatorio en toda issue creada automaticamente, sin excepcion.
      - Cerrar cada issue automaticamente al crearla (ya fue resuelta por el commit).
      - Si hay multiples commits, aplicar las mismas reglas a cada uno.
 

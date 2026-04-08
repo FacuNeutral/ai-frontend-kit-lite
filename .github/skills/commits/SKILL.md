@@ -25,12 +25,12 @@ argument-hint: 'Describe los cambios realizados o pedi asistencia para generar e
 8. Usa `asking question` para confirmar el push antes de ejecutarlo.
 9. Si el push falla por conflictos, usa `asking question` para que el usuario elija: cancelar, o forzar con `--force`.
 10. Si el usuario elige `--force`, usa `asking question` adicional para confirmar la accion destructiva antes de ejecutarla.
-11. Si `auto create issue: true`, despues de un push exitoso usa `asking question` para confirmar la creacion automatica de issues. Si se confirma, crea una issue por commit con titulo `[<TYPE>] <description>`, body con Tasks/Context/Impact, labels `@auto-generated` y `<TYPE>`, asignada al usuario, y cerrada automaticamente.
+11. Si `auto create issue: true`, despues de un push exitoso usa `asking question` para confirmar la creacion automatica de issues. Si se confirma, crea una issue por commit con titulo `[<TYPE>] <description>`, body con Tasks/Context/Impact, labels `@auto-generated` y `<TYPE>`, asignada al usuario, cerrada automaticamente, y con un comentario obligatorio en ingles con la referencia al commit resolutor: `resolved on commit <short-sha> (<commit description>)` (ej: `resolved on commit df0178b (improve devtools UI visual polish)`).
 
 ## Required Output
 
 - Mensaje de commit completo siguiendo el formato convencional.
-- Tipo correcto segun prioridad (`fix > feat > refactor > perf > docs > style > chore`).
+- Tipo correcto segun prioridad (`fix > feat > refactor > perf > docs > style > chore > agent`).
 - Tasks, Context e Impact explicitos.
 - Si hay multiples tipos acoplados, agrupar Tasks por tipo bajo el PRIMARY_TYPE.
 
