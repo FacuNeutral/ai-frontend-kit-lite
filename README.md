@@ -13,6 +13,16 @@ Usar Ai Frontend Kit Lite como frontend real del producto. El proyecto se convie
 Usar Ai Frontend Kit Lite como espacio de exploracion visual. Se prototipon pantallas, se validan flujos y se iteran componentes con datos simulados. El resultado no se despliega como producto final, sino que sirve como referencia de diseño para replicar en un frontend de mayor escala con otra base tecnica. Es un mockup navegable con criterio de sistema visual, no un wireframe estatico.
 
 
+## Herramientas de Debug
+
+El proyecto incluye dos devtools integradas que se activan desde el navegador con `Ctrl+Alt+<`. Permiten inspeccionar y modificar aspectos visuales y estructurales del proyecto sin salir del entorno de desarrollo.
+
+| Herramienta | Descripcion | Documentacion |
+|---|---|---|
+| **Design Tokens** | Editor visual de tokens: colores, tipografia, spacing, sombras, paletas y backups. | [Ver documentacion](client/docs/markdown/design-tokens.md) |
+| **Pages Explorer** | Navegador de paginas con simulacion de viewports, documentacion por ruta y galeria visual. | [Ver documentacion](client/docs/markdown/pages-explorer.md) |
+
+
 ## Resumen
 
 - Dos modos de uso: MVP funcional listo para conectar, o referencia de diseño para replicar en otro frontend.
@@ -132,15 +142,6 @@ src/
 ```
 
 En ese escenario, `entities/` define el dominio financiero, `application/reports/` concentra la experiencia del modulo de reportes, `zustand/reports/` resuelve el estado compartido y `interfaces/` mantiene contratos tecnicos reutilizables. Si el objetivo fuera solo validar diseno, esa misma estructura permite trabajar con mocks realistas y entregar una referencia navegable lista para trasladarse despues a un frontend de mayor escala.
-
-## Herramientas de Debug
-
-El proyecto incluye dos devtools integradas que se activan desde el navegador con `Ctrl+Alt+<`. Permiten inspeccionar y modificar aspectos visuales y estructurales del proyecto sin salir del entorno de desarrollo.
-
-| Herramienta | Descripcion | Documentacion |
-|---|---|---|
-| **Design Tokens** | Editor visual de tokens: colores, tipografia, spacing, sombras, paletas y backups. | [Ver documentacion](client/docs/markdown/design-tokens.md) |
-| **Pages Explorer** | Navegador de paginas con simulacion de viewports, documentacion por ruta y galeria visual. | [Ver documentacion](client/docs/markdown/pages-explorer.md) |
 
 ## Sistema Visual
 
