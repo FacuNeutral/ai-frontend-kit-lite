@@ -21,7 +21,7 @@ argument-hint: 'Describe los cambios realizados o pedi asistencia para generar e
 4. Genera el mensaje de commit con el formato obligatorio (type, scope, description, Tasks, Context, Impact).
 5. Valida contra la checklist: 1 intencion, tipo correcto, descripcion ≤ 50 chars, Tasks y Context presentes.
 6. Usa `asking question` para que el usuario confirme el commit, lo edite manualmente, o pida regenerar con ajustes.
-7. Sugeri el siguiente paso (`git add`, `git commit`, `git push`).
+7. Sugeri el siguiente paso (`git add .`, `git commit`, `git push`). Siempre usar `git add .`, nunca staging selectivo ni rutas individuales.
 8. Usa `asking question` para confirmar el push antes de ejecutarlo.
 9. Si el push falla por conflictos, usa `asking question` para que el usuario elija: cancelar, o forzar con `--force`.
 10. Si el usuario elige `--force`, usa `asking question` adicional para confirmar la accion destructiva antes de ejecutarla.

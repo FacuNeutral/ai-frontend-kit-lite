@@ -134,10 +134,10 @@ Verificar archivos modificados y nuevos.
 ### Step 3 — Preparar staging
 
 ```bash
-git add <files>
+git add .
 ```
 
-Preferir staging selectivo sobre `git add .`.
+Siempre usar `git add .`. No usar staging selectivo ni rutas individuales.
 
 ### Step 4 — Crear commit
 
