@@ -2,16 +2,6 @@
 
 Ai Frontend Kit Lite es una base frontend orientada a proyectos de escala pequeña y mediana — SaaS, herramientas internas o productos de enfoque privado. El entorno viene preparado para iterar rapido, de forma individual o con asistencia de IA generativa, sobre una arquitectura que no sera necesario descartar cuando el proyecto crezca.
 
-Se puede utilizar en dos escenarios:
-
-### MVP funcional
-
-Usar Ai Frontend Kit Lite como frontend real del producto. El proyecto se convierte en la aplicacion: se conectan APIs, se reemplazan mocks por datos reales y se escala sobre la arquitectura existente. Ideal para lanzar una primera version usable sin invertir tiempo en definir infraestructura.
-
-### Referencia de diseño
-
-Usar Ai Frontend Kit Lite como espacio de exploracion visual. Se prototipon pantallas, se validan flujos y se iteran componentes con datos simulados. El resultado no se despliega como producto final, sino que sirve como referencia de diseño para replicar en un frontend de mayor escala con otra base tecnica. Es un mockup navegable con criterio de sistema visual, no un wireframe estatico.
-
 
 ## Herramientas de Debug
 
