@@ -5,8 +5,10 @@
 import DebugTrigger from "../components/DebugTrigger";
 import DebugPanel from "../components/DebugPanel";
 import DebugToolsModal from "../components/DebugToolsModal";
-import { useDebugKeyboard } from "../hooks/useDebugKeyboard";
+import DTPanel from "../../design-tokens/components/DTPanel";
+import { useDevtoolsKeyboard } from "../../core/hooks/useDevtoolsKeyboard";
 
+const IS_DEV_MODE = import.meta.env.VITE_DEV_MODE === "true";
 const IS_EXPLORER_IFRAME = window.name === "__pages_explorer__";
 
 if (IS_EXPLORER_IFRAME) {
@@ -24,14 +26,16 @@ if (IS_EXPLORER_IFRAME) {
 }
 
 export default function PagesExplorerIntegration({ children }: { children: React.ReactNode }) {
-  useDebugKeyboard();
+  useDevtoolsKeyboard();
 
+  if (!IS_DEV_MODE) return <>{children}</>;
   if (IS_EXPLORER_IFRAME) return <>{children}</>;
 
   return (
     <>
       <DebugPanel>{children}</DebugPanel>
       <DebugToolsModal />
+      <DTPanel />
     </>
   );
 }

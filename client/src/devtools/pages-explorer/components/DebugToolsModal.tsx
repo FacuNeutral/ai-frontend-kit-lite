@@ -7,6 +7,7 @@ import { motion, useMotionValue, useSpring } from "motion/react";
 import { Layers, X, Palette, Blocks } from "lucide-react";
 import { useDebugToolsStore, DEBUG_TOOLS } from "../../core/store/debug-tools.slice";
 import { usePagesExplorerStore } from "../store/pages-explorer.slice";
+import { useDesignTokensStore } from "../../design-tokens/store/design-tokens.slice";
 
 function MagneticButton({ children, disabled }: { children: React.ReactNode; disabled?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -56,6 +57,9 @@ export default function DebugToolsModal() {
     if (tool?.disabled) return;
     if (toolId === "pages-explorer") {
       usePagesExplorerStore.getState().open();
+    }
+    if (toolId === "design-tokens") {
+      useDesignTokensStore.getState().open();
     }
     close();
   }, [close]);

@@ -24,7 +24,6 @@ export const DEBUG_TOOLS: DebugTool[] = [
     label: "Design Tokens",
     description: "Inspect and preview all design tokens: colors, spacing, typography, shadows, radii and animations defined in the theme.",
     icon: "palette",
-    disabled: true,
   },
   {
     id: "components",

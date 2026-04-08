@@ -20,27 +20,29 @@ import PagesExplorerIntegration from "@/devtools/pages-explorer/layouts/PagesExp
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <PagesExplorerIntegration>
-          <Routes>
-            <Route element={<MainLayout />}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/shorts" element={<ShortsPage />} />
-              <Route path="/watch/:id" element={<WatchPage />} />
-              <Route path="/search" element={<SearchPage />} />
-            </Route>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </PagesExplorerIntegration>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <div className="min-h-screen bg-neutral text-neutral-dark font-primary dark:bg-neutral-dark dark:text-neutral">
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <PagesExplorerIntegration>
+            <Routes>
+              <Route element={<MainLayout />}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/shorts" element={<ShortsPage />} />
+                <Route path="/watch/:id" element={<WatchPage />} />
+                <Route path="/search" element={<SearchPage />} />
+              </Route>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </PagesExplorerIntegration>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </div>
 );
 
 export default App;
