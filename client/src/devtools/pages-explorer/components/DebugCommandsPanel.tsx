@@ -29,7 +29,7 @@ export default function DebugCommandsPanel({ open, onClose }: DebugCommandsPanel
   }, {});
 
   return (
-    <div ref={panelRef} tabIndex={-1} className="fixed right-0 top-0 bottom-0 w-80 z-9300 bg-debug-surface dark:bg-debug-surface-dark border-l border-debug-border dark:border-debug-border-dark shadow-lg flex flex-col outline-none">
+    <div ref={panelRef} tabIndex={-1} className="fixed right-0 top-0 bottom-0 w-80 z-9300 bg-debug-surface dark:bg-debug-surface-dark border-l border-debug-border dark:border-debug-border-dark shadow-2xl shadow-black/20 flex flex-col outline-none">
       {/* ==========================================
           Header
          ========================================== */}
@@ -54,8 +54,9 @@ export default function DebugCommandsPanel({ open, onClose }: DebugCommandsPanel
       <div className="flex-1 overflow-y-auto p-4 space-y-5 scrollbar-debug">
         {Object.entries(sections).map(([section, commands]) => (
           <div key={section}>
-            <h3 className="text-[10px] font-semibold uppercase tracking-wider text-debug-text-muted dark:text-debug-text-muted-dark mb-2">
-              {section}
+            <h3 className="text-[10px] font-semibold uppercase tracking-widest text-debug-text-muted dark:text-debug-text-muted-dark mb-2.5 flex items-center gap-2">
+              <span>{section}</span>
+              <span className="flex-1 h-px bg-debug-border dark:bg-debug-border-dark" />
             </h3>
             <div className="space-y-1">
               {commands.map((cmd) => (
@@ -66,7 +67,7 @@ export default function DebugCommandsPanel({ open, onClose }: DebugCommandsPanel
                   <span className="text-sm text-debug-text dark:text-debug-text-dark">
                     {cmd.label}
                   </span>
-                  <kbd className="text-[10px] font-mono px-2 py-1 rounded bg-debug-surface-overlay dark:bg-debug-surface-overlay-dark border border-debug-border dark:border-debug-border-dark text-debug-text-muted dark:text-debug-text-muted-dark">
+                  <kbd className="text-[10px] font-mono px-2 py-1 rounded-(--radius-debug-tab) bg-debug-primary/5 dark:bg-debug-primary/10 border border-debug-primary/15 dark:border-debug-primary/20 text-debug-primary">
                     {cmd.shortcut}
                   </kbd>
                 </div>

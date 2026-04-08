@@ -124,17 +124,17 @@ export default function PageGalleryModal() {
   const isGloballyLoading = isCapturing || refreshing;
 
   return (
-    <div className="fixed inset-0 z-9200 flex items-center justify-center bg-black/60">
+    <div className="fixed inset-0 z-9200 flex items-center justify-center bg-black/70 backdrop-blur-sm">
       {/* ==========================================
           Modal Container
          ========================================== */}
-      <div className="relative w-full max-w-4xl max-h-[85vh] mx-4 flex flex-col bg-debug-surface dark:bg-debug-surface-dark rounded-(--radius-debug-panel) shadow-xl border border-debug-border dark:border-debug-border-dark overflow-hidden">
+      <div className="relative w-full max-w-4xl max-h-[85vh] mx-4 flex flex-col bg-debug-surface dark:bg-debug-surface-dark rounded-(--radius-debug-panel) shadow-2xl shadow-black/30 border border-debug-border dark:border-debug-border-dark overflow-hidden">
         {/* ==========================================
             Header
            ========================================== */}
         <div className="flex items-center gap-3 px-4 py-3 border-b border-debug-border dark:border-debug-border-dark">
           {/* Search */}
-          <div className="flex-1 flex items-center gap-2 px-3 py-1.5 rounded-(--radius-debug-button) bg-debug-surface-overlay dark:bg-debug-surface-overlay-dark border border-debug-border dark:border-debug-border-dark">
+          <div className="flex-1 flex items-center gap-2 px-3 py-1.5 rounded-(--radius-debug-panel) bg-debug-surface-overlay dark:bg-debug-surface-overlay-dark border border-debug-border dark:border-debug-border-dark transition-colors duration-150 focus-within:border-debug-primary focus-within:ring-1 focus-within:ring-debug-primary-glow">
             <Search size={14} className="text-debug-text-muted dark:text-debug-text-muted-dark shrink-0" />
             <input
               type="text"
@@ -203,10 +203,10 @@ export default function PageGalleryModal() {
                     onClick={() => handleSelect(route.navigateTo)}
                     onMouseEnter={() => setHighlightIndex(index)}
                     onKeyDown={(e) => { if (e.key === "Enter") handleSelect(route.navigateTo); }}
-                    className={`group flex flex-col rounded-(--radius-debug-panel) border overflow-hidden transition-colors duration-150 text-left bg-debug-surface-overlay dark:bg-debug-surface-overlay-dark cursor-pointer ${
+                    className={`group flex flex-col rounded-(--radius-debug-panel) border overflow-hidden transition-all duration-200 text-left bg-debug-surface-raised dark:bg-debug-surface-raised-dark cursor-pointer ${
                       isHighlighted
-                        ? "border-debug-primary ring-1 ring-debug-primary"
-                        : "border-debug-border dark:border-debug-border-dark hover:border-debug-primary"
+                        ? "border-debug-primary ring-1 ring-debug-primary shadow-[0_0_16px_var(--color-debug-primary-glow)]"
+                        : "border-debug-border dark:border-debug-border-dark hover:border-debug-border-active dark:hover:border-debug-border-active-dark"
                     }`}
                   >
                     {/* Preview */}
@@ -240,11 +240,11 @@ export default function PageGalleryModal() {
                     </div>
 
                     {/* Label */}
-                    <div className="px-3 py-2">
-                      <span className="text-xs font-medium text-debug-text dark:text-debug-text-dark group-hover:text-debug-primary transition-colors duration-150">
+                    <div className="px-3 py-2.5 border-t border-debug-border dark:border-debug-border-dark">
+                      <span className="text-xs font-medium text-debug-text dark:text-debug-text-dark group-hover:text-debug-primary transition-colors duration-200">
                         {route.label}
                       </span>
-                      <span className="block text-[10px] text-debug-text-muted dark:text-debug-text-muted-dark mt-0.5 truncate">
+                      <span className="block text-[10px] text-debug-text-muted dark:text-debug-text-muted-dark mt-0.5 truncate font-mono">
                         {route.path}
                       </span>
                     </div>

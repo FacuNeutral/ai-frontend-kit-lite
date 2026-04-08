@@ -16,12 +16,12 @@ export default function DebugTrigger() {
         fixed bottom-5 right-5 z-9300
         flex items-center justify-center
         w-12 h-12 rounded-(--radius-debug-button)
-        transition-colors duration-200
+        transition-all duration-200
         shadow-md
         ${
           isOpen
-            ? "bg-debug-primary text-debug-primary-foreground"
-            : "bg-debug-surface dark:bg-debug-surface-dark text-debug-text dark:text-debug-text-dark border border-debug-border dark:border-debug-border-dark"
+            ? "bg-debug-primary text-debug-primary-foreground shadow-[0_0_20px_var(--color-debug-primary-glow)] animate-debug-glow-pulse"
+            : "bg-debug-surface dark:bg-debug-surface-dark text-debug-text dark:text-debug-text-dark border border-debug-border dark:border-debug-border-dark hover:border-debug-primary hover:shadow-[0_0_12px_var(--color-debug-primary-glow)]"
         }
         hover:bg-debug-primary-hover hover:text-debug-primary-foreground
       `}

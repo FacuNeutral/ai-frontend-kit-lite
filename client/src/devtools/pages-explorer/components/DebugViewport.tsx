@@ -73,8 +73,8 @@ export default function DebugViewport({ children }: { children: React.ReactNode 
       {/* ==========================================
           Viewport Indicator
          ========================================== */}
-      <div className="flex items-center justify-center py-1.5 border-b border-debug-border dark:border-debug-border-dark">
-        <span className={`text-[10px] font-medium tracking-wide ${modeColor}`}>
+      <div className="flex items-center justify-center py-2 border-b border-debug-border dark:border-debug-border-dark bg-debug-surface dark:bg-debug-surface-dark">
+        <span className={`text-[10px] font-medium tracking-widest uppercase ${modeColor}`}>
           {viewportLabel}
         </span>
       </div>
@@ -82,9 +82,9 @@ export default function DebugViewport({ children }: { children: React.ReactNode 
       {/* ==========================================
           Viewport Container
          ========================================== */}
-      <div className="flex-1 flex justify-center overflow-auto p-3 scrollbar-debug">
+      <div className="flex-1 flex justify-center overflow-auto p-4 scrollbar-debug">
         <div
-          className="relative bg-neutral dark:bg-neutral-dark rounded-(--radius-debug-panel) overflow-hidden shadow-md transition-all duration-300 border border-debug-border dark:border-debug-border-dark"
+          className="relative bg-neutral dark:bg-neutral-dark rounded-(--radius-debug-panel) overflow-hidden shadow-lg shadow-black/20 transition-all duration-300 border border-debug-border dark:border-debug-border-dark"
           style={{
             width: effectiveDimensions.width ?? "100%",
             maxWidth: "100%",

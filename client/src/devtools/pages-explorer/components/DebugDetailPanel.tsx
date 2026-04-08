@@ -70,18 +70,18 @@ export default function DebugDetailPanel() {
       {/* ==========================================
           Tab Bar
          ========================================== */}
-      <div className="flex border-b border-debug-border dark:border-debug-border-dark">
+      <div className="flex border-b border-debug-border dark:border-debug-border-dark bg-debug-surface dark:bg-debug-surface-dark">
         {tabs.map((tab) => (
           <button
             key={tab.key}
             onClick={() => setDetailTab(tab.key)}
             className={`
-              flex-1 flex items-center justify-center gap-1.5 px-3 py-2.5 text-sm font-medium
-              transition-colors duration-150 border-b-2
+              flex-1 flex items-center justify-center gap-1.5 px-3 py-3 text-sm font-medium
+              transition-all duration-200 border-b-2
               ${
                 detailTab === tab.key
-                  ? "border-debug-primary text-debug-primary"
-                  : "border-transparent text-debug-text-muted dark:text-debug-text-muted-dark hover:text-debug-text dark:hover:text-debug-text-dark"
+                  ? "border-debug-primary text-debug-primary bg-debug-primary/5"
+                  : "border-transparent text-debug-text-muted dark:text-debug-text-muted-dark hover:text-debug-text dark:hover:text-debug-text-dark hover:bg-debug-surface-overlay/50 dark:hover:bg-debug-surface-overlay-dark/50"
               }
             `}
           >
@@ -122,11 +122,11 @@ function DescriptionTab({ doc }: { doc: PageDoc }) {
           {doc.title}
         </h3>
         <div className="flex items-center gap-2 mb-2">
-          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-(--radius-debug-tab) bg-debug-surface-overlay dark:bg-debug-surface-overlay-dark text-xs font-medium text-debug-text-muted dark:text-debug-text-muted-dark">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-(--radius-debug-chip) bg-debug-primary/10 border border-debug-primary/20 text-xs font-medium text-debug-primary">
             <Route size={11} />
             {doc.route}
           </span>
-          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-(--radius-debug-tab) bg-debug-surface-overlay dark:bg-debug-surface-overlay-dark text-xs font-medium text-debug-text-muted dark:text-debug-text-muted-dark">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-(--radius-debug-chip) bg-debug-accent/10 border border-debug-accent/20 text-xs font-medium text-debug-accent">
             <Tag size={11} />
             {doc.layout}
           </span>
@@ -159,7 +159,7 @@ function DescriptionTab({ doc }: { doc: PageDoc }) {
             {doc.stores.map((s) => (
               <div
                 key={s}
-                className="text-sm font-mono px-2 py-1.5 rounded-(--radius-debug-tab) bg-debug-surface-overlay dark:bg-debug-surface-overlay-dark text-debug-primary"
+                className="text-sm font-mono px-2.5 py-2 rounded-(--radius-debug-tab) bg-debug-primary/5 dark:bg-debug-primary/10 border border-debug-primary/15 dark:border-debug-primary/20 text-debug-primary"
               >
                 {s}
               </div>
@@ -226,7 +226,7 @@ function StructureTab({ doc }: { doc: PageDoc }) {
       {/* Visual Tree */}
       <div>
         <SectionTitle icon={<GitBranch size={13} />} label="Render Tree" />
-        <div className="bg-debug-surface-overlay dark:bg-debug-surface-overlay-dark rounded-(--radius-debug-panel) p-3 font-mono text-[11px] text-debug-text dark:text-debug-text-dark">
+        <div className="bg-debug-surface-overlay dark:bg-debug-surface-overlay-dark rounded-(--radius-debug-panel) p-3.5 font-mono text-[11px] text-debug-text dark:text-debug-text-dark border border-debug-border dark:border-debug-border-dark">
           <div className="text-debug-text-muted dark:text-debug-text-muted-dark">
             {"<"}<span className="text-debug-primary">{doc.layout === "MainLayout" ? "MainLayout" : "Page"}</span>{">"}
           </div>
@@ -276,11 +276,12 @@ function StructureTab({ doc }: { doc: PageDoc }) {
 
 function SectionTitle({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
-    <div className="flex items-center gap-1.5 mb-2">
+    <div className="flex items-center gap-1.5 mb-2.5">
       <span className="text-debug-primary">{icon}</span>
-      <span className="text-xs font-semibold uppercase tracking-wider text-debug-text-muted dark:text-debug-text-muted-dark">
+      <span className="text-[10px] font-semibold uppercase tracking-widest text-debug-text-muted dark:text-debug-text-muted-dark">
         {label}
       </span>
+      <span className="flex-1 h-px bg-debug-border dark:bg-debug-border-dark ml-1" />
     </div>
   );
 }
@@ -288,7 +289,7 @@ function SectionTitle({ icon, label }: { icon: React.ReactNode; label: string })
 function ParamRow({ label, example, description }: { label: string; example: string; description: string }) {
   return (
     <div className="flex items-start gap-2 text-sm">
-      <code className="shrink-0 px-1.5 py-0.5 rounded-(--radius-debug-tab) bg-debug-surface-overlay dark:bg-debug-surface-overlay-dark text-debug-primary font-mono text-xs">
+      <code className="shrink-0 px-2 py-0.5 rounded-(--radius-debug-chip) bg-debug-primary/10 border border-debug-primary/20 text-debug-primary font-mono text-xs">
         {label}
       </code>
       <div>

@@ -118,14 +118,14 @@ export default function DebugToolsModal() {
           Backdrop
          ========================================== */}
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
         onClick={close}
       />
 
       {/* ==========================================
           Modal Container
          ========================================== */}
-      <div className="relative w-96 bg-debug-surface dark:bg-debug-surface-dark border border-debug-border dark:border-debug-border-dark rounded-(--radius-debug-panel) shadow-2xl overflow-hidden">
+      <div className="relative w-96 bg-debug-surface dark:bg-debug-surface-dark border border-debug-border dark:border-debug-border-dark rounded-(--radius-debug-panel) shadow-2xl shadow-black/30 overflow-hidden">
         {/* ==========================================
             Header
            ========================================== */}
@@ -162,12 +162,12 @@ export default function DebugToolsModal() {
                 onClick={() => activateTool(tool.id)}
                 onMouseEnter={() => setSelectedIndex(index)}
                 className={`
-                  flex flex-col items-center gap-2 p-4 w-20 rounded-(--radius-debug-panel)
-                  transition-all duration-150 outline-none
+                  flex flex-col items-center gap-2.5 p-4 w-20 rounded-(--radius-debug-panel)
+                  transition-all duration-200 outline-none
                   ${isDisabled ? "opacity-40 cursor-not-allowed" : ""}
                   ${
                     isSelected && !isDisabled
-                      ? "bg-debug-primary/15 ring-2 ring-debug-primary scale-105"
+                      ? "bg-debug-primary/10 ring-2 ring-debug-primary shadow-[0_0_20px_var(--color-debug-primary-glow)] scale-105"
                       : isSelected && isDisabled
                         ? "ring-2 ring-debug-border dark:ring-debug-border-dark"
                         : !isDisabled
@@ -179,10 +179,10 @@ export default function DebugToolsModal() {
                 <div
                   className={`
                     w-12 h-12 rounded-(--radius-debug-button) flex items-center justify-center
-                    transition-colors duration-150
+                    transition-all duration-200
                     ${
                       isSelected && !isDisabled
-                        ? "bg-debug-primary text-debug-primary-foreground"
+                        ? "bg-debug-primary text-debug-primary-foreground shadow-[0_0_16px_var(--color-debug-primary-glow)]"
                         : "bg-debug-surface-overlay dark:bg-debug-surface-overlay-dark text-debug-text dark:text-debug-text-dark"
                     }
                   `}

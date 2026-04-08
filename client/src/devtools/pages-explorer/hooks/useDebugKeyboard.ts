@@ -44,7 +44,7 @@ export const DEBUG_COMMANDS: DebugCommand[] = [
   /* --- Tools --- */
   { id: "theme-toggle", label: "Toggle dark / light", shortcut: "Ctrl+Alt+T", section: "Tools" },
   { id: "exit-debug", label: "Exit debug mode", shortcut: "Ctrl+Alt+Q", section: "Tools" },
-  { id: "open-debug", label: "Open debug tools", shortcut: "Ctrl+Alt+`", section: "Tools" },
+  { id: "open-debug", label: "Open debug tools", shortcut: "Ctrl+Alt+<", section: "Tools" },
 ];
 
 /* ==========================================
@@ -62,8 +62,8 @@ export function useDebugKeyboard() {
 
       if (!ctrl || !alt) return;
 
-      /* --- Ctrl+Alt+` (key next to 1, above Tab): debug tools modal --- */
-      if (code === "Backquote") {
+      /* --- Ctrl+Alt+< (key next to left Shift): debug tools modal --- */
+      if (code === "IntlBackslash") {
         e.preventDefault();
         useDebugToolsStore.getState().toggle();
         return;

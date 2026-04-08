@@ -137,17 +137,17 @@ export default function DebugNavbar() {
   const brandLetters = useDebugBrandLetters({
     segments: [
       { text: "PAGES EXPLORER ", className: "text-debug-primary animate-debug-brand" },
-      { text: "- Devtools", className: "text-debug-text-muted dark:text-debug-text-muted-dark" },
+      { text: "- DEVTOOLS", className: "text-debug-text-muted dark:text-debug-text-muted-dark" },
     ],
   });
 
   return (
-    <nav className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 px-4 py-2.5 bg-debug-surface dark:bg-debug-surface-dark border-b border-debug-border dark:border-debug-border-dark">
+    <nav className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 px-5 py-3 bg-debug-surface dark:bg-debug-surface-dark border-b border-debug-border dark:border-debug-border-dark">
       {/* ==========================================
           Left — Brand label
          ========================================== */}
       <div className="flex items-center gap-2 justify-self-start">
-        <span className="font-debug text-sm font-semibold select-none inline-flex">
+        <span className="font-debug text-sm font-semibold select-none inline-flex tracking-wide">
           {brandLetters}
         </span>
       </div>
@@ -157,7 +157,7 @@ export default function DebugNavbar() {
          ========================================== */}
       <div className="relative w-80" ref={searchRef}>
         <div
-          className="flex items-center gap-2.5 px-3.5 py-2 rounded-(--radius-debug-button) bg-debug-surface-overlay dark:bg-debug-surface-overlay-dark border border-debug-border dark:border-debug-border-dark cursor-text"
+          className="flex items-center gap-2.5 px-3.5 py-2 rounded-(--radius-debug-panel) bg-debug-surface-overlay dark:bg-debug-surface-overlay-dark border border-debug-border dark:border-debug-border-dark cursor-text transition-colors duration-150 hover:border-debug-border-active dark:hover:border-debug-border-active-dark focus-within:border-debug-primary focus-within:ring-1 focus-within:ring-debug-primary-glow"
           onClick={() => setSearchFocused(true)}
         >
           <Search size={15} className="text-debug-text-muted dark:text-debug-text-muted-dark shrink-0" />
@@ -191,7 +191,7 @@ export default function DebugNavbar() {
 
         {/* Dropdown results */}
         {searchFocused && (
-          <div className="absolute left-0 right-0 top-full mt-1 bg-debug-surface-raised dark:bg-debug-surface-raised-dark border border-debug-border dark:border-debug-border-dark rounded-(--radius-debug-panel) shadow-lg overflow-hidden z-9250">
+          <div className="absolute left-0 right-0 top-full mt-1.5 bg-debug-surface-raised dark:bg-debug-surface-raised-dark border border-debug-border dark:border-debug-border-dark rounded-(--radius-debug-panel) shadow-lg shadow-black/20 overflow-hidden z-9250">
             <div className="max-h-72 overflow-y-auto py-1 scrollbar-debug">
               {filteredRoutes.length === 0 ? (
                 <div className="px-4 py-5 text-center text-sm text-debug-text-muted dark:text-debug-text-muted-dark">
@@ -226,7 +226,7 @@ export default function DebugNavbar() {
                         {route.path}
                       </span>
                       {route.nested && (
-                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-debug-surface-overlay dark:bg-debug-surface-overlay-dark text-debug-text-muted dark:text-debug-text-muted-dark">
+                        <span className="text-[10px] px-2 py-0.5 rounded-(--radius-debug-chip) bg-debug-primary/10 border border-debug-primary/20 text-debug-primary font-medium">
                           :id
                         </span>
                       )}
@@ -252,11 +252,11 @@ export default function DebugNavbar() {
             key={vp.mode}
             onClick={() => setViewportMode(vp.mode)}
             className={`
-              relative p-2 rounded-(--radius-debug-tab) transition-colors duration-150
+              relative p-2 rounded-(--radius-debug-tab) transition-all duration-200
               ${
                 viewportMode === vp.mode
-                  ? "bg-debug-primary text-debug-primary-foreground"
-                  : "text-debug-text-muted dark:text-debug-text-muted-dark hover:bg-debug-surface-overlay dark:hover:bg-debug-surface-overlay-dark"
+                  ? "bg-debug-primary text-debug-primary-foreground shadow-[0_0_12px_var(--color-debug-primary-glow)]"
+                  : "text-debug-text-muted dark:text-debug-text-muted-dark hover:text-debug-text dark:hover:text-debug-text-dark hover:bg-debug-surface-overlay dark:hover:bg-debug-surface-overlay-dark"
               }
             `}
             title={vp.label}
@@ -274,12 +274,12 @@ export default function DebugNavbar() {
           onClick={toggleLandscape}
           disabled={viewportMode === "responsive"}
           className={`
-            relative p-2 rounded-(--radius-debug-tab) transition-colors duration-150
+            relative p-2 rounded-(--radius-debug-tab) transition-all duration-200
             ${viewportMode === "responsive" ? "opacity-30 cursor-not-allowed" : ""}
             ${
               landscapeMode
-                ? "bg-debug-primary text-debug-primary-foreground"
-                : "text-debug-text-muted dark:text-debug-text-muted-dark hover:bg-debug-surface-overlay dark:hover:bg-debug-surface-overlay-dark"
+                ? "bg-debug-primary text-debug-primary-foreground shadow-[0_0_12px_var(--color-debug-primary-glow)]"
+                : "text-debug-text-muted dark:text-debug-text-muted-dark hover:text-debug-text dark:hover:text-debug-text-dark hover:bg-debug-surface-overlay dark:hover:bg-debug-surface-overlay-dark"
             }
           `}
           title="Toggle landscape rotation"
@@ -296,11 +296,11 @@ export default function DebugNavbar() {
             onClick={() => setPresetsOpen(!presetsOpen)}
             className={`
               flex items-center gap-1.5 px-2.5 py-2 rounded-(--radius-debug-tab) text-sm
-              transition-colors duration-150
+              transition-all duration-200
               ${
                 viewportMode === "custom"
-                  ? "bg-debug-primary text-debug-primary-foreground"
-                  : "text-debug-text-muted dark:text-debug-text-muted-dark hover:bg-debug-surface-overlay dark:hover:bg-debug-surface-overlay-dark"
+                  ? "bg-debug-primary text-debug-primary-foreground shadow-[0_0_12px_var(--color-debug-primary-glow)]"
+                  : "text-debug-text-muted dark:text-debug-text-muted-dark hover:text-debug-text dark:hover:text-debug-text-dark hover:bg-debug-surface-overlay dark:hover:bg-debug-surface-overlay-dark"
               }
             `}
           title="Custom resolution"
@@ -310,7 +310,7 @@ export default function DebugNavbar() {
           </button>
 
           {presetsOpen && (
-            <div className="absolute right-0 top-full mt-1 w-64 bg-debug-surface-raised dark:bg-debug-surface-raised-dark border border-debug-border dark:border-debug-border-dark rounded-(--radius-debug-panel) shadow-lg overflow-hidden z-9250">
+            <div className="absolute right-0 top-full mt-1.5 w-64 bg-debug-surface-raised dark:bg-debug-surface-raised-dark border border-debug-border dark:border-debug-border-dark rounded-(--radius-debug-panel) shadow-lg shadow-black/20 overflow-hidden z-9250">
               <div className="px-4 py-2.5 border-b border-debug-border dark:border-debug-border-dark">
                 <span className="text-xs font-semibold uppercase tracking-wider text-debug-text-muted dark:text-debug-text-muted-dark">
                   Presets
@@ -348,11 +348,11 @@ export default function DebugNavbar() {
         <button
           onClick={toggleDetail}
           className={`
-            relative p-2 rounded-(--radius-debug-tab) transition-colors duration-150
+            relative p-2 rounded-(--radius-debug-tab) transition-all duration-200
             ${
               detailOpen
-                ? "bg-debug-primary text-debug-primary-foreground"
-                : "text-debug-text-muted dark:text-debug-text-muted-dark hover:bg-debug-surface-overlay dark:hover:bg-debug-surface-overlay-dark"
+                ? "bg-debug-primary text-debug-primary-foreground shadow-[0_0_12px_var(--color-debug-primary-glow)]"
+                : "text-debug-text-muted dark:text-debug-text-muted-dark hover:text-debug-text dark:hover:text-debug-text-dark hover:bg-debug-surface-overlay dark:hover:bg-debug-surface-overlay-dark"
             }
           `}
           title="Toggle details panel"
@@ -369,11 +369,11 @@ export default function DebugNavbar() {
         <button
           onClick={toggleCommands}
           className={`
-            relative p-2 rounded-(--radius-debug-tab) transition-colors duration-150
+            relative p-2 rounded-(--radius-debug-tab) transition-all duration-200
             ${
               commandsOpen
-                ? "bg-debug-primary text-debug-primary-foreground"
-                : "text-debug-text-muted dark:text-debug-text-muted-dark hover:bg-debug-surface-overlay dark:hover:bg-debug-surface-overlay-dark"
+                ? "bg-debug-primary text-debug-primary-foreground shadow-[0_0_12px_var(--color-debug-primary-glow)]"
+                : "text-debug-text-muted dark:text-debug-text-muted-dark hover:text-debug-text dark:hover:text-debug-text-dark hover:bg-debug-surface-overlay dark:hover:bg-debug-surface-overlay-dark"
             }
           `}
           title="Keyboard shortcuts"
@@ -389,7 +389,7 @@ export default function DebugNavbar() {
         {/* Dark / Light Theme Toggle */}
         <button
           onClick={toggleDarkMode}
-          className="relative p-2 rounded-(--radius-debug-tab) text-debug-text-muted dark:text-debug-text-muted-dark hover:bg-debug-surface-overlay dark:hover:bg-debug-surface-overlay-dark transition-colors duration-150"
+          className="relative p-2 rounded-(--radius-debug-tab) text-debug-text-muted dark:text-debug-text-muted-dark hover:text-debug-text dark:hover:text-debug-text-dark hover:bg-debug-surface-overlay dark:hover:bg-debug-surface-overlay-dark transition-all duration-200"
           title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
         >
           {darkMode ? <Sun size={16} /> : <Moon size={16} />}
@@ -403,7 +403,7 @@ export default function DebugNavbar() {
         {/* Exit Debug Mode */}
         <button
           onClick={() => setExitConfirmOpen(true)}
-          className="relative p-2 rounded-(--radius-debug-tab) text-debug-accent hover:bg-debug-accent/10 transition-colors duration-150"
+          className="relative p-2 rounded-(--radius-debug-tab) text-debug-accent hover:bg-debug-accent/10 hover:shadow-[0_0_12px_var(--color-debug-accent-glow)] transition-all duration-200"
           title="Exit debug mode (Ctrl+Alt+Q)"
         >
           <LogOut size={16} />
@@ -455,7 +455,7 @@ function ExitConfirmToast({ onConfirm, onCancel }: { onConfirm: () => void; onCa
     <div
       ref={toastRef}
       tabIndex={-1}
-      className="fixed top-16 left-1/2 -translate-x-1/2 z-9400 flex items-center gap-4 px-6 py-4 rounded-(--radius-debug-panel) bg-debug-surface-raised dark:bg-debug-surface-raised-dark border border-debug-accent/40 shadow-xl outline-none animate-in fade-in slide-in-from-top-2 duration-200"
+      className="fixed top-16 left-1/2 -translate-x-1/2 z-9400 flex items-center gap-4 px-6 py-4 rounded-(--radius-debug-panel) bg-debug-surface-raised dark:bg-debug-surface-raised-dark border border-debug-accent/30 shadow-xl shadow-debug-accent-glow outline-none animate-in fade-in slide-in-from-top-2 duration-200"
     >
       <span className="text-base font-medium text-debug-text dark:text-debug-text-dark whitespace-nowrap">
         Exit debug mode?
